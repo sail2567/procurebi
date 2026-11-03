@@ -1,8 +1,13 @@
 # ProcureBI
 
+[![CI](https://github.com/sail2567/procurebi/actions/workflows/ci.yml/badge.svg)](https://github.com/sail2567/procurebi/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python 3.12](https://img.shields.io/badge/Python-3.12-3776ab?logo=python&logoColor=white)](backend)
+[![Vue 3](https://img.shields.io/badge/Vue-3-42b883?logo=vue.js&logoColor=white)](frontend)
+
 面向大模型业务采购场景的 BI 数据智能体：上传采购账单 Excel 自动建表，用自然语言查询成本、用量与比价，自动生成 SQL、图表和结论；PDF / Word 合同会被切分并建立检索索引，提问时自动引用条款原文。
 
-> 个人学习 / 简历项目。示例数据与合同均为模拟生成，不含真实业务数据。
+> 示例采购数据与合同均为脚本生成，不含真实业务数据。
 
 ## 已实现能力
 
@@ -186,3 +191,22 @@ docker compose --env-file .env.prod -f docker-compose.prod.yml up -d --build
 - 登录态使用 HttpOnly Cookie，前端脚本读不到 token
 - `tools/` 是本地便携工具与数据目录，不提交
 - 示例采购数据与合同均为脚本生成，仅用于演示
+
+## 开发与测试
+
+```bash
+# 后端测试
+cd backend
+python -m pytest -q
+
+# 前端构建（含 vue-tsc 类型检查）
+cd frontend
+npm ci
+npm run build
+```
+
+Push 与 PR 会自动运行同样的检查，见 [.github/workflows/ci.yml](.github/workflows/ci.yml)。
+
+## License
+
+[MIT](LICENSE)

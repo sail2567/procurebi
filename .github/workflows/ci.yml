@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  backend:
+    name: Backend tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: backend/pyproject.toml
+
+      # 与 deploy/Dockerfile.backend 保持一致：从 pyproject.toml 推导依赖，
+      # 不再维护第二份 requirements.txt。
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -c "import pathlib, tomllib; d = tomllib.loads(pathlib.Path('pyproject.toml').read_text('utf-8'))['project']['dependencies']; pathlib.Path('/tmp/requirements.txt').write_text('\n'.join(d) + '\n', encoding='utf-8')"
+          python -m pip install -r /tmp/requirements.txt
+          python -m pip install "pytest>=8.0" "pytest-asyncio>=0.23"
+
+      - name: Run tests
+        run: python -m pytest -q
+
+  frontend:
+    name: Frontend build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      # 构建脚本包含 vue-tsc -b，类型错误会直接让 CI 失败。
+      - name: Build
+        run: npm run build
