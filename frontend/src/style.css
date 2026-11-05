@@ -1867,51 +1867,19 @@ th.num {
   height: 24px;
 }
 
-.login-eyebrow {
-  color: #5eead4;
-}
-
-.login-brand h1 {
+.login-name {
   color: #f8fafc;
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 700;
-  line-height: 1.26;
+  line-height: 1.2;
   letter-spacing: -0.03em;
 }
 
 .login-lead {
-  margin-top: 16px;
+  margin-top: 10px;
   color: #94a3b8;
-  font-size: 13.5px;
-  line-height: 1.75;
-}
-
-.login-points {
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-  margin: 28px 0 0;
-  padding: 0;
-  list-style: none;
-  color: #cbd5e1;
-  font-size: 12.5px;
-  line-height: 1.5;
-}
-
-.login-points li {
-  display: flex;
-  align-items: flex-start;
-  gap: 9px;
-}
-
-.login-points li::before {
-  content: '';
-  width: 6px;
-  height: 6px;
-  margin-top: 6px;
-  flex-shrink: 0;
-  border-radius: 50%;
-  background: #2dd4bf;
+  font-size: 14px;
+  line-height: 1.6;
 }
 
 .login-panel {
@@ -1925,12 +1893,6 @@ th.num {
   font-size: 24px;
   font-weight: 700;
   letter-spacing: -0.02em;
-}
-
-.login-panel-head p {
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 12.5px;
 }
 
 .login-form {
@@ -2523,10 +2485,6 @@ th.num {
     padding: 32px 30px;
   }
 
-  .login-points {
-    display: none;
-  }
-
   .login-panel {
     padding: 36px 30px;
   }
@@ -2576,12 +2534,12 @@ th.num {
     padding: 26px 24px;
   }
 
-  .login-brand h1 {
-    font-size: 24px;
+  .login-name {
+    font-size: 26px;
   }
 
   .login-lead {
-    margin-top: 10px;
+    margin-top: 8px;
     font-size: 12.5px;
   }
 

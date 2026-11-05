@@ -50,22 +50,13 @@ async function submit() {
             <path d="M22 19H2" />
           </svg>
         </div>
-        <p class="eyebrow login-eyebrow">LLM PROCUREMENT INTELLIGENCE</p>
-        <h1>把采购账单变成<br />可以对话的 BI</h1>
-        <p class="login-lead">
-          上传多供应商账单与合同，用自然语言查询成本、用量与配额，自动生成 SQL、图表和风险洞察。
-        </p>
-        <ul class="login-points">
-          <li>多供应商账单自动建表，不锁定字段结构</li>
-          <li>LangGraph 问数链路，SQL 只读校验与重试</li>
-          <li>合同条款检索与配额风险提示</li>
-        </ul>
+        <h1 class="login-name">ProcureBI</h1>
+        <p class="login-lead">大模型采购的成本与用量分析</p>
       </section>
 
       <section class="login-panel">
         <div class="login-panel-head">
           <h2>登录</h2>
-          <p>使用管理员分配的账号进入工作台</p>
         </div>
 
         <form class="login-form" @submit.prevent="submit">
@@ -76,7 +67,8 @@ async function submit() {
               class="input"
               type="text"
               autocomplete="username"
-              placeholder="例如 admin"
+              placeholder="请输入用户名"
+              autofocus
             />
           </label>
           <label class="field">
@@ -100,7 +92,7 @@ async function submit() {
           <p>管理员：admin / admin123456</p>
           <p>普通用户：viewer / viewer123456</p>
         </div>
-        <p v-else class="login-foot">账号由管理员在「后台管理 → 用户管理」中创建。</p>
+        <p v-else class="login-foot">没有账号？请联系管理员开通。</p>
       </section>
     </div>
   </div>
